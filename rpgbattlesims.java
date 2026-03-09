@@ -9,9 +9,9 @@ public class rpgbattlesims {
         System.out.println("\n\n===================== WELCOME TO THE COLOSSEUM ============================\n");
         System.out.println("========================= GAME MECHANICS ===========================");
         System.out.println("On your turn, enter a number to choose your action.");
-        System.out.println(" [1] Attack - Deal 20 damage to the Boss.");
-        System.out.println(" [2] Heal   - Consume 1 potion to restore 30 HP.");
-        System.out.println(" [3] Defend - Brace yourself to take half damage this round.\n");
+        System.out.println(" [1] Attack --> Deal 20 damage to the Boss.");
+        System.out.println(" [2] Heal   --> Consume 1 potion to restore 30 HP.");
+        System.out.println(" [3] Defend --> Brace yourself to take half damage this round.\n");
 
         System.out.println("Beware: The Boss is unpredictable and will attack randomly!");
         System.out.println("Defeat the Boss before your HP reaches 0.");
@@ -42,33 +42,38 @@ public class rpgbattlesims {
 
             switch (playerAction) {
                 case 1:
-                    System.out.println("\nYou swing your sword with all your might!");
+                    System.out.println("\n\nYou swing your sword with all your might!");
                     bossHP -= 20;
                     break;
                 case 2:
                     if (potions >= 1){
-                        System.out.println("\nYou drink a potion and feel your wounds close.");
+                        System.out.println("\n\nYou drink a potion and feel your wounds close.");
                         potions--;
                         playerHP += 30;
                     }else {
-                        System.out.println("\nYou have no potions left! Pick another action.");
+                        System.out.println("\n\nYou have no potions left! Pick another action.");
                         numRounds--;
                         continue;
                     }
                     break;
                 case 3:
-                    System.out.println("\nYou raise your shield, bracing for impact!");
+                    System.out.println("\n\nYou raise your shield, bracing for impact!");
                     defenseState = true;
                     break;
                 default:
-                    System.out.println("\nInvalid input, try again.");
+                    System.out.println("\n\nInvalid input, try again.");
                     numRounds--;
                     continue;
             }
 
+            if (bossHP < 0){
+                System.out.println("\nThe BOSS collapsed to the ground!");
+                break;
+            }
+
             switch (bossAction) {
                 case 1:
-                    System.out.println("The Boss lunges forward with a standard strike!");
+                    System.out.println("\nThe Boss lunges forward with a standard strike!");
                     if (defenseState){
                         playerHP -= 7;
                     }else{
@@ -76,7 +81,7 @@ public class rpgbattlesims {
                     }
                     break;
                 case 2:
-                    System.out.println("The Boss glows red and unleashes a Heavy Attack!");
+                    System.out.println("\nThe Boss glows red and unleashes a Heavy Attack!");
                     if (defenseState){
                         playerHP -= 12;
                     }else{
@@ -84,7 +89,7 @@ public class rpgbattlesims {
                     }
                     break;
                 case 3:
-                    System.out.println("The Boss laughs maniacally, completely missing you.");
+                    System.out.println("\nThe Boss laughs maniacally, completely missing you.");
                     break;
                 default:
                     break;
@@ -92,9 +97,9 @@ public class rpgbattlesims {
         }
 
         if (bossHP <= 0){
-            System.out.println("\n\n\n\n\nVictory! The village will celebrate your heroism and you will be rewarded!\n");
+            System.out.println("\n\n\n\n\nVictory! The village will celebrate your heroism and your bravery will be!\n");
         }else if (playerHP <= 0){
-            System.out.println("\n\n\n\n\nGame Over! You died.\n");
+            System.out.println("\n\n\n\n\nGame Over, you have died! The village has been annihilated and reduced to atoms.\n");
         }
 
         System.out.println("================= FINAL STATS ==================");
